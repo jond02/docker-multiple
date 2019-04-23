@@ -19,3 +19,16 @@ after_success:
   - docker push jond02/multi-nginx
   - docker push jond02/multi-api
   - docker push jond02/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-multi-udemy"
+  env: "DockerMultiUdemy-env"
+  bucket_name: "elasticbeanstalk-us-west-2-736338261372"
+  bucket_path: "docker-multi-udemy"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
